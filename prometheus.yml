@@ -19,10 +19,10 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  #- job_name: 'yukikaze'
+  - job_name: 'yukikaze'
 
-  #  static_configs:
-  #    - targets: ['localhost:5500']
+    static_configs:
+      - targets: ['localhost:5500']
 
   - job_name: 'haruna'
 
