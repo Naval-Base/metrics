@@ -1,0 +1,30 @@
+global:
+  scrape_interval:     30s
+  evaluation_interval: 30s
+  # scrape_timeout is set to the global default (10s).
+
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets:
+      # - alertmanager:9093
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  - job_name: 'prometheus'
+
+    static_configs:
+      - targets: ['localhost:9090']
+
+  #- job_name: 'yukikaze'
+
+  #  static_configs:
+  #    - targets: ['localhost:5500']
+
+  - job_name: 'haruna'
+
+    static_configs:
+      - targets: ['localhost:5501']
