@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  prometheus:
+    build:
+      context: ./prometheus
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+      - prometheus-storage:/prometheus
+    network_mode: 'host'
+
+  grafana:
+    image: 'grafana/grafana:latest'
+    env_file:
+      - ./grafana/.env
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    network_mode: 'host'
+
+volumes:
+  prometheus-storage:
+    external: true
+  grafana-storage:
+    external: true
