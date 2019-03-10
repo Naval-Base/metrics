@@ -9,6 +9,7 @@ services:
       - 9090:9090
     volumes:
       - prometheus-storage:/prometheus
+    mem_limit: 1GB
     network_mode: 'host'
 
   grafana:
@@ -19,6 +20,7 @@ services:
       - 3000:3000
     volumes:
       - grafana-storage:/var/lib/grafana
+    mem_limit: 1GB
     network_mode: 'host'
 
 volumes:
