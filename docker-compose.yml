@@ -4,7 +4,7 @@ services:
   prometheus:
     build:
       context: ./prometheus
-    restart: always
+    restart: unless-stopped
     ports:
       - 9090:9090
     volumes:
@@ -14,6 +14,7 @@ services:
 
   grafana:
     image: 'grafana/grafana:latest'
+    restart: unless-stopped
     env_file:
       - ./grafana/.env
     ports:
