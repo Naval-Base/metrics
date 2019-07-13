@@ -9,7 +9,7 @@ services:
       - 9090:9090
     volumes:
       - prometheus-storage:/prometheus
-    mem_limit: 1GB
+    mem_limit: 2GB
     network_mode: 'host'
 
   grafana:
@@ -21,11 +21,29 @@ services:
       - 3000:3000
     volumes:
       - grafana-storage:/var/lib/grafana
-    mem_limit: 1GB
+    mem_limit: 2GB
+    network_mode: 'host'
+
+  loki:
+    image: 'grafana/loki:latest'
+    ports:
+      - 3100:3100
+    command: -config.file=/etc/loki/local-config.yaml
+    mem_limit: 2GB
+    network_mode: 'host'
+
+  promtail:
+    image: 'grafana/promtail:latest'
+    volumes:
+      - promtail-storage:/var/log
+    command: -config.file=/etc/promtail/local-config.yaml
+    mem_limit: 2GB
     network_mode: 'host'
 
 volumes:
   prometheus-storage:
     external: true
   grafana-storage:
+    external: true
+  promtail-storage:
     external: true
