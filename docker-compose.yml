@@ -35,7 +35,7 @@ services:
   promtail:
     image: 'grafana/promtail:latest'
     volumes:
-      - promtail-storage:/var/log
+      - /var/log:/var/log
     command: -config.file=/etc/promtail/local-config.yaml
     mem_limit: 2GB
     network_mode: 'host'
@@ -44,6 +44,4 @@ volumes:
   prometheus-storage:
     external: true
   grafana-storage:
-    external: true
-  promtail-storage:
     external: true
